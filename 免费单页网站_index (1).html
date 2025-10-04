@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Xtelefonja — 手机维修 & 销售 Roma</title>
+  <meta name="description" content="Xtelefonja 专业手机维修与销售 — 罗马本地服务。快速维修、二手回收、配件更换。">
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#0ea5a4;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:var(--bg);color:#0f172a}
+    header{background:linear-gradient(90deg,var(--accent),#06b6d4);color:#fff;padding:28px 16px}
+    .container{max-width:1000px;margin:0 auto;padding:20px}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:700;letter-spacing:0.4px}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;margin-left:18px}
+    select.lang{background:#fff;color:var(--accent);border:0;border-radius:8px;padding:4px 8px;font-weight:600}
+    .hero{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+    .hero-left{flex:1;min-width:260px}
+    .hero h1{margin:6px 0;font-size:28px}
+    .hero p{color:rgba(255,255,255,0.95);margin:8px 0 16px}
+    .btn{display:inline-block;background:#fff;color:var(--accent);padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600}
+    main{padding:28px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    .muted{color:var(--muted)}
+    footer{padding:20px 0;color:var(--muted);font-size:14px}
+    .phone{font-weight:700;color:var(--accent)}
+    form input,form textarea{width:100%;padding:10px;border:1px solid #e6e6ef;border-radius:8px;margin-top:8px}
+    form button{margin-top:8px;padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600}
+    @media (min-width:900px){.hero h1{font-size:36px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Xtelefonja</div>
+      <nav>
+        <a href="#services" data-lang="nav_services">服务</a>
+        <a href="#prices" data-lang="nav_prices">价格</a>
+        <a href="#contact" data-lang="nav_contact">联系我们</a>
+        <select class="lang" id="langSelect">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="it">Italiano</option>
+        </select>
+      </nav>
+    </div>
+    <div class="container hero">
+      <div class="hero-left">
+        <h1 data-lang="hero_title">罗马本地手机维修 & 二手回收</h1>
+        <p data-lang="hero_desc">快修屏幕、电池、进水与主板维修。专业配件，公平报价，保修服务。</p>
+        <a class="btn" href="#contact" data-lang="hero_btn">立即联系</a>
+      </div>
+      <div style="min-width:260px">
+        <div class="card">
+          <strong data-lang="hours_title">营业时间</strong>
+          <p class="muted" data-lang="hours">星期一到六 9.30-13.00 / 14.30-20.00</p>
+          <strong data-lang="phone_title">电话</strong>
+          <p class="phone">+39 338 1846260</p>
+          <strong data-lang="address_title">地址</strong>
+          <p class="muted">Via Francesco Grimaldi 120, Roma</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="services">
+      <h2 data-lang="services_title">我们的服务</h2>
+      <div class="grid">
+        <div class="card"><h3 data-lang="srv1">屏幕更换</h3><p class="muted" data-lang="srv1_desc">原厂或高品质副厂屏幕，现场更换，保修90天。</p></div>
+        <div class="card"><h3 data-lang="srv2">电池更换</h3><p class="muted" data-lang="srv2_desc">原装/兼容电池选择，测试后安装，快速完成。</p></div>
+        <div class="card"><h3 data-lang="srv3">数据恢复 & 解锁</h3><p class="muted" data-lang="srv3_desc">专业工具与多年的经验，尽力找回重要数据。</p></div>
+        <div class="card"><h3 data-lang="srv4">二手回收</h3><p class="muted" data-lang="srv4_desc">现场评估，现金回收，支持旧机置换和折抵。</p></div>
+      </div>
+    </section>
+
+    <section id="prices" style="margin-top:20px">
+      <h2 data-lang="price_title">参考价格（示例）</h2>
+      <div class="grid">
+        <div class="card"><h3 data-lang="p1">常见机型更换屏幕</h3><p class="muted" data-lang="p1_desc">iPhone 屏幕: €80 - €220<br>三星/安卓: €60 - €180</p></div>
+        <div class="card"><h3 data-lang="p2">电池更换</h3><p class="muted" data-lang="p2_desc">通用型号: €30 - €80</p></div>
+        <div class="card"><h3 data-lang="p3">进水检测</h3><p class="muted" data-lang="p3_desc">诊断 €20，修复另外报价</p></div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:20px">
+      <h2 data-lang="contact_title">联系我们</h2>
+      <div class="grid">
+        <div class="card">
+          <p data-lang="contact_info">想要预约或询价？填写下面表格，或者直接拨打电话。</p>
+          <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+            <label data-lang="name_label">姓名</label>
+            <input type="text" name="姓名" placeholder="例如：张三">
+            <label data-lang="phone_label">电话</label>
+            <input type="text" name="电话" placeholder="例如：+39 338 1846260">
+            <label data-lang="msg_label">信息</label>
+            <textarea name="留言" rows="4" placeholder="写下你的问题或预约时间"></textarea>
+            <button type="submit" data-lang="send_btn">发送邮件</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 data-lang="map_title">地图 & 社交</h3>
+          <p class="muted" data-lang="map_desc">可加入 Google Maps 链接或社交媒体账号。</p>
+          <p><strong>Facebook:</strong> @xtelefonja</p>
+          <p><strong>Instagram:</strong> @xtelefonja</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="card" style="padding:12px;border-radius:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>© <span id="year"></span> Xtelefonja — Roma</div>
+        <div class="muted" data-lang="privacy">隐私：仅用于展示联系信息与服务。</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_services: 'Services', nav_prices: 'Prices', nav_contact: 'Contact',
+        hero_title: 'Phone Repair & Used Trade-in in Rome', hero_desc: 'Fast repair for screens, batteries, water damage, and boards. Professional parts, fair pricing, warranty included.', hero_btn: 'Contact Now',
+        hours_title: 'Opening Hours', hours: 'Mon–Sat 9:30–13:00 / 14:30–20:00', phone_title: 'Phone', address_title: 'Address',
+        services_title: 'Our Services', srv1: 'Screen Replacement', srv1_desc: 'Original or high-quality aftermarket screens, on-site replacement, 90-day warranty.', srv2: 'Battery Replacement', srv2_desc: 'Original/compatible batteries, tested and installed quickly.', srv3: 'Data Recovery & Unlocking', srv3_desc: 'Professional tools and experience to recover important data.', srv4: 'Used Phone Trade-in', srv4_desc: 'Instant evaluation, cash payment, trade-in available.',
+        price_title: 'Reference Prices (Example)', p1: 'Screen Replacement', p1_desc: 'iPhone: €80–220, Samsung/Android: €60–180', p2: 'Battery', p2_desc: '€30–80', p3: 'Water Damage Check', p3_desc: 'Diagnosis €20, repair quoted separately.',
+        contact_title: 'Contact Us', contact_info: 'Want to book or ask a price? Fill the form below or call us directly.', name_label: 'Name', phone_label: 'Phone', msg_label: 'Message', send_btn: 'Send Email', map_title: 'Map & Social', map_desc: 'Add your Google Maps link or social accounts here.', privacy: 'Privacy: for display only.'
+      },
+      it: {
+        nav_services: 'Servizi', nav_prices: 'Prezzi', nav_contact: 'Contatti',
+        hero_title: 'Riparazione cellulari e ritiro usato a Roma', hero_desc: 'Riparazione veloce di schermi, batterie, danni da acqua e schede. Ricambi professionali, prezzi onesti e garanzia.', hero_btn: 'Contattaci ora',
+        hours_title: 'Orari di apertura', hours: 'Lunedì–Sabato 9:30–13:00 / 14:30–20:00', phone_title: 'Telefono', address_title: 'Indirizzo',
+        services_title: 'I nostri servizi', srv1: 'Sostituzione schermo', srv1_desc: 'Schermi originali o compatibili di alta qualità, sostituzione immediata con garanzia 90 giorni.', srv2: 'Sostituzione batteria', srv2_desc: 'Batterie originali/compatibili, testate e installate rapidamente.', srv3: 'Recupero dati e sblocco', srv3_desc: 'Strumenti professionali per recuperare dati importanti.', srv4: 'Ritiro usato', srv4_desc: 'Valutazione immediata, pagamento in contanti, permuta disponibile.',
+        price_title: 'Prezzi di riferimento (esempi)', p1: 'Sostituzione schermo', p1_desc: 'iPhone: €80–220, Samsung/Android: €60–180', p2: 'Batteria', p2_desc: '€30–80', p3: 'Verifica danni da acqua', p3_desc: 'Diagnosi €20, riparazione con preventivo separato.',
+        contact_title: 'Contattaci', contact_info: 'Vuoi prenotare o chiedere un preventivo? Compila il modulo o chiamaci direttamente.', name_label: 'Nome', phone_label: 'Telefono', msg_label: 'Messaggio', send_btn: 'Invia Email', map_title: 'Mappa e social', map_desc: 'Aggiungi link di Google Maps o social network.', privacy: 'Privacy: solo informativa.'
+      }
+    };
+    document.getElementById('langSelect').addEventListener('change', e => {
+      const lang = e.target.value;
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        const key = el.getAttribute('data-lang');
+        el.textContent = translations[lang]?.[key] || el.textContent;
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
