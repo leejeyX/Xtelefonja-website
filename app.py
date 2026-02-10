@@ -1,6 +1,9 @@
 import os
 import re
 import sqlite3
+import subprocess
+import sys
+import shutil
 from datetime import datetime
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
@@ -21,6 +24,31 @@ os.makedirs(ATTACH_DIR, exist_ok=True)
 
 def now_str():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def is_valid_date(s: str) -> bool:
+    try:
+        datetime.strptime(s, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
+
+
+def open_path(path: str):
+    """Cross-platform open file/folder with default system app."""
+    try:
+        if os.name == "nt":
+            os.startfile(path)
+            return True
+
+        if sys.platform == "darwin":
+            subprocess.Popen(["open", path])
+            return True
+
+        subprocess.Popen(["xdg-open", path])
+        return True
+    except Exception:
+        return False
 
 
 def norm_imei(s: str) -> str:
@@ -143,6 +171,9 @@ class DB:
         cur.execute("SELECT * FROM records ORDER BY id DESC")
         return cur.fetchall()
 
+    def close(self):
+        self.conn.close()
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -164,7 +195,15 @@ class App(tk.Tk):
         self.current_attachments_saved = ""
 
         self._build_ui()
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
         self.refresh_list()
+
+    def on_close(self):
+        try:
+            self.db.close()
+        except Exception:
+            pass
+        self.destroy()
 
     def _build_ui(self):
         # Top: Search
@@ -423,8 +462,7 @@ class App(tk.Tk):
                 name, ext = os.path.splitext(base)
                 dst = os.path.join(rec_folder, f"{name}_{int(datetime.now().timestamp())}{ext}")
             try:
-                with open(src, "rb") as fsrc, open(dst, "wb") as fdst:
-                    fdst.write(fsrc.read())
+                shutil.copy2(src, dst)
                 rel = os.path.relpath(dst, APP_DIR)
                 saved.append(rel)
             except Exception as e:
@@ -447,12 +485,14 @@ class App(tk.Tk):
 
         folder = os.path.join(ATTACH_DIR, f"ID_{self.selected_id}")
         if os.path.isdir(folder):
-            os.startfile(folder)
+            if not open_path(folder):
+                messagebox.showinfo("附件", "无法打开附件目录，请手动打开。")
         else:
             messagebox.showinfo("附件", "附件文件夹不存在（可能附件路径已被移动）。")
 
     def open_attach_dir(self):
-        os.startfile(ATTACH_DIR)
+        if not open_path(ATTACH_DIR):
+            messagebox.showinfo("提示", "无法打开附件目录，请手动打开。")
 
     def save_record(self):
         data = {
@@ -475,6 +515,14 @@ class App(tk.Tk):
         if not data["date"]:
             messagebox.showerror("错误", "日期不能为空（例如 2026-02-10）。")
             return
+
+        if not is_valid_date(data["date"]):
+            messagebox.showerror("错误", "日期格式不正确，请输入 YYYY-MM-DD，例如 2026-02-10。")
+            return
+
+        if data["imei1"] and data["imei1"] == data["imei2"]:
+            if not messagebox.askyesno("IMEI提示", "IMEI1 与 IMEI2 相同，是否仍然保存？"):
+                return
 
         price_raw = (self.vars["buy_price"].get() or "").strip().replace(",", ".")
         if price_raw:
