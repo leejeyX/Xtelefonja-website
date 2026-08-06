@@ -1,0 +1,629 @@
+﻿<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Xtelefonja — Riparazione & Vendita Cellulari | Roma</title>
+  <meta name="description" content="Xtelefonja a Roma: riparazione e vendita cellulari. Riparazioni rapide, ritiro usato, cambio accessori.">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VPB1HNPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y5VPB1HNPM');
+  </script>
+
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#0ea5a4;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
+
+    .topbar{
+      position:fixed;top:0;left:0;right:0;z-index:9999;
+      background:#ffffff;
+      color:#000000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .topbar-inner{max-width:1000px;margin:0 auto;padding:0 4px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;justify-content:center;flex:1;min-width:150px;height:110px;overflow:hidden}
+    .logo img {
+      height: 220px;
+      width: auto;
+      margin-right: 8px;
+      vertical-align: middle;
+      display:block;
+    }
+    nav{margin-right:80px}
+    nav a{color:#000000;text-decoration:none;margin-left:14px}
+
+    main{padding-top:90px}
+    .container{max-width:1000px;margin:0 auto;padding:20px}
+
+    header.hero{background:linear-gradient(90deg,var(--accent),#06b6d4);color:#fff;padding:26px 0 10px;display:flex;align-items:center;min-height:240px}
+    .hero-wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:center;width:100%}
+    .hero-left{flex:1;min-width:260px;margin-top:18px}
+    .hero h1{margin:6px 0;font-size:28px}
+    .btn{display:inline-block;background:#fff;color:var(--accent);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;border:0;cursor:pointer}
+    .btn2{display:inline-block;background:#22c55e;color:#fff;padding:10px 16px;border-radius:10px;font-weight:800;text-decoration:none;margin-left:10px;border:0;cursor:pointer;width:fit-content}
+    .btn3{display:inline-block;background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;margin-left:10px;border:0;cursor:pointer}
+    .btn-card{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;text-decoration:none;margin-top:auto;align-self:flex-start}
+    .btn-quote{
+      display:inline-block;
+      margin:12px 0 0;
+      background:var(--accent);
+      color:#fff;
+      padding:12px 18px;
+      border-radius:12px;
+      font-size:16px;
+      box-shadow:0 10px 24px rgba(14,165,164,.25);
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:start}
+    .products-grid{grid-template-columns:repeat(4,minmax(0,1fr));align-items:start}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,.06);display:flex;flex-direction:column}
+    .latest-preview{margin-top:8px}
+    .latest-label{margin:6px 0 4px;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.02em;text-transform:uppercase}
+    .latest-card{display:flex;flex-direction:column;gap:6px}
+    .latest-image{width:100%;height:120px;border-radius:10px;object-fit:contain;background:linear-gradient(135deg,#e2e8f0,#f8fafc)}
+    .latest-placeholder{display:flex;align-items:center;justify-content:center;color:#94a3b8;font-weight:700}
+    .product-title{margin:10px 0 2px;font-weight:800;display:flex;flex-direction:column;gap:2px;min-height:48px}
+    .product-title span{display:inline}
+    .product-brand{margin:0;text-transform:uppercase}
+    .product-model{white-space:nowrap}
+    .latest-price{margin:0;font-weight:800}
+    .latest-desc{margin:0;color:var(--muted);font-size:14px;line-height:1.4;display:none}
+    .latest-desc.show{display:block}
+    .desc-toggle{
+      margin-top:8px;
+      margin-bottom:10px;
+      background:#f1f5f9;
+      color:#0f172a;
+      border:0;
+      border-radius:10px;
+      padding:4px 8px;
+      font-size:12px;
+      font-weight:700;
+      cursor:pointer;
+      align-self:flex-start;
+    }
+    .brand-card{
+      margin-top:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+      text-align:center;
+    }
+    .brand-card img{width:220px;max-width:100%;height:auto;object-fit:contain}
+    .brand-copy{flex:1;min-width:240px}
+    .brand-card-link{
+      display:block;
+      color:inherit;
+      text-decoration:none;
+    }
+    .contact-card a{color:inherit;text-decoration:none}
+    .contact-row{display:flex;align-items:center;gap:8px}
+    .phone-row{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .contact-btn{
+      display:inline-block;
+      margin-top:6px;
+      padding:8px 12px;
+      border-radius:10px;
+      background:#f1f5f9;
+      color:#0f172a;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .contact-btn:hover{background:#e2e8f0;text-decoration:none}
+    .map-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-left:2px;
+      gap:2px;
+      text-decoration:none;
+      vertical-align:middle;
+    }
+    .map-label{font-size:12px;color:var(--muted)}
+    .map-link img{width:20px;height:20px;display:block}
+    .hero .card{padding:2px 12px;max-width:320px;margin-top:24px;color:#0f172a}
+    .hero .card strong{color:#0f172a}
+    .muted{color:var(--muted)}
+    .phone{font-weight:800;color:var(--accent)}
+    .hero-left .phone{color:#fff;font-size:18px;margin:10px 0 0}
+    h2{border-bottom:2px solid #eee;padding-bottom:8px;text-transform:uppercase}
+
+    footer{padding:20px 0;color:var(--muted);font-size:14px}
+    .legal{margin-top:20px;padding:14px;background:#eef2f7;border-radius:10px}
+    .legal h3{margin:0 0 8px;font-size:16px}
+    .legal p{margin:0;font-size:12px;line-height:1.5;color:var(--muted)}
+
+    /* ===== Quote Form ===== */
+    .form-row{margin:10px 0}
+    .form-row label{display:block;font-weight:700;margin-bottom:6px}
+    .form-row input,.form-row select,.form-row textarea{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #e2e8f0;
+      border-radius:10px;
+      font-size:14px;
+    }
+    .form-row .hidden{display:none}
+    .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+
+    /* ===== Mobile ===== */
+    @media (max-width: 720px){
+      .topbar-inner{flex-direction:row;align-items:center;gap:8px;padding:8px 10px}
+      .logo{height:70px;min-width:0;flex:1}
+      .logo img{height:110px;margin-right:0}
+      nav{margin-right:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
+      nav a{margin-left:0;font-size:12px}
+      main{padding-top:140px}
+      .container{padding:16px}
+      .hero-wrap{gap:16px}
+      .hero h1{font-size:22px}
+      .btn,.btn2{display:inline-block;margin:8px 10px 0 0}
+      .hero .card{max-width:100%;margin-top:8px}
+      .grid{grid-template-columns:1fr}
+      .form-actions{justify-content:stretch}
+      .btn-quote{width:100%;text-align:center}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner nav">
+    <div class="logo">
+      <img src="images/banner.jpg" alt="Xtelefonja" height="220">
+    </div>
+    <nav>
+      <a href="#services">Servizi</a>
+      <a href="prodotti.html">Prodotti</a>
+      <a href="#quote">Preventivo</a>
+      <a href="#contact">Contatti</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<header class="hero">
+  <div class="container hero-wrap">
+    <div class="hero-left">
+      <h1>Riparazione e vendita di cellulari e computer a Roma</h1>
+      <p>Schermi, batterie, danni da acqua e schede madri. Vendita di cellulari, computer e inchiostro per stampanti. Ricambi professionali e prezzi chiari.</p>
+      <a class="btn" href="tel:+393381846260">Contattaci</a>
+      <a class="btn2" href="https://wa.me/393381846260" target="_blank">WhatsApp</a>
+      <a class="btn3" href="#printer-ink">Inchiostro</a>
+    </div>
+
+    <div class="card contact-card">
+      <strong>Orario di apertura</strong>
+      <p class="muted">Lun-Sab 9:30-13:00 / 14:30-20:00</p>
+      <div class="contact-row">
+        <strong>Indirizzo</strong>
+        <a class="map-link" href="https://maps.google.com/?q=Via%20Francesco%20Grimaldi%20120,%2000146%20Roma" target="_blank" rel="noopener" aria-label="Apri in Google Maps">
+          <span class="map-label">Google Maps</span>
+          <img src="images/gmaps.png" alt="">
+        </a>
+      </div>
+      <p class="muted">Via Francesco Grimaldi 120, 00146 Roma</p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<section id="products" style="margin-top:20px">
+  <h2>I nostri prodotti</h2>
+  <div class="grid products-grid">
+    <div class="card">
+      <h3>Telefoni nuovi</h3>
+      <div class="latest-label">Ultimo arrivato</div>
+      <div class="latest-preview" data-latest-box="nuovi">
+        <div class="latest-placeholder latest-image">Immagine</div>
+        <p class="muted">In aggiornamento.</p>
+      </div>
+      <a class="btn-card" href="prodotti.html#nuovi">Altri</a>
+    </div>
+    <div class="card">
+      <h3>Telefoni usati</h3>
+      <div class="latest-label">Ultimo arrivato</div>
+      <div class="latest-preview" data-latest-box="usato">
+        <div class="latest-placeholder latest-image">Immagine</div>
+        <p class="muted">In aggiornamento.</p>
+      </div>
+      <a class="btn-card" href="prodotti.html#usato">Altri</a>
+    </div>
+    <div class="card">
+      <h3>Computer usati</h3>
+      <div class="latest-label">Ultimo arrivato</div>
+      <div class="latest-preview" data-latest-box="computer">
+        <div class="latest-placeholder latest-image">Immagine</div>
+        <p class="muted">In aggiornamento.</p>
+      </div>
+      <a class="btn-card" href="prodotti.html#computer">Altri</a>
+    </div>
+    <div class="card">
+      <h3>Tablet usati</h3>
+      <div class="latest-label">Ultimo arrivato</div>
+      <div class="latest-preview" data-latest-box="tablet">
+        <div class="latest-placeholder latest-image">Immagine</div>
+        <p class="muted">In aggiornamento.</p>
+      </div>
+      <a class="btn-card" href="prodotti.html#tablet">Altri</a>
+    </div>
+  </div>
+  <a class="brand-card-link" href="prodotti.html#oukitel">
+    <div class="card brand-card">
+      <img src="https://www.oukitel.it/img/logo-1748010131.jpg" alt="OUKITEL">
+      <div class="brand-copy">
+        <h3>Disponibile anche OUKITEL</h3>
+        <p class="muted">Vendiamo anche smartphone OUKITEL, inclusi modelli rugged e batterie ad alta capacita.</p>
+        <span class="btn-card">Scopri OUKITEL</span>
+      </div>
+    </div>
+  </a>
+</section>
+
+<section id="services" style="margin-top:20px">
+  <h2>I nostri servizi</h2>
+  <div class="grid">
+    <div class="card"><h3>Sostituzione schermo</h3></div>
+    <div class="card"><h3>Sostituzione batteria</h3></div>
+    <div class="card"><h3>Aggiornamento software</h3></div>
+    <div class="card"><h3>Riparazione hardware</h3></div>
+    <div class="card"><h3>Riparazione console da gioco</h3></div>
+    <div class="card"><h3>Ritiro usato</h3></div>
+  </div>
+</section>
+
+<section id="quote" style="margin-top:20px">
+  <h2>Preventivo</h2>
+  <div class="card">
+    <p class="muted">Seleziona marca, modello e problema, poi invia su WhatsApp per il preventivo.</p>
+    <form id="quoteForm">
+      <div class="form-row">
+        <label for="quoteBrand">Marca</label>
+        <select id="quoteBrand" name="brand" required>
+          <option value="">Seleziona</option>
+          <option value="Apple">Apple</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Huawei">Huawei</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Oppo">Oppo</option>
+          <option value="Vivo">Vivo</option>
+          <option value="Other">Altro</option>
+        </select>
+        <input id="quoteBrandOther" class="hidden" name="brand_other" type="text" placeholder="Inserisci marca">
+      </div>
+      <div class="form-row">
+        <label for="quoteModel">Modello</label>
+        <input id="quoteModel" name="model" type="text" placeholder="Es. iPhone 13">
+      </div>
+      <div class="form-row">
+        <label for="quoteIssue">Problema</label>
+        <select id="quoteIssue" name="issue" required>
+          <option value="">Seleziona</option>
+          <option value="screen">Schermo</option>
+          <option value="battery">Batteria</option>
+          <option value="water">Acqua</option>
+          <option value="software">Software</option>
+          <option value="other">Altro</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="quoteNote">Note</label>
+        <textarea id="quoteNote" name="note" rows="3" placeholder="Descrivi il problema"></textarea>
+      </div>
+      <div class="form-row">
+        <label for="quoteContact">Contatto</label>
+        <input id="quoteContact" name="contact" type="text" placeholder="Telefono o WhatsApp">
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-quote" type="submit">Invia su WhatsApp</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="printer-ink" style="margin-top:20px">
+  <h2>Inchiostro Stampanti</h2>
+  <div class="card" style="display:flex;flex-direction:row;align-items:flex-start;gap:20px;flex-wrap:wrap">
+    <img src="https://www.temporia.it/wp-content/uploads/2017/10/IMPRESORA_LOGO-300x135.png" alt="Stampanti e inchiostro" style="width:180px;max-width:100%;height:auto;object-fit:contain">
+    <div style="flex:1;min-width:240px">
+      <p class="muted" style="margin-top:0">Disponibili in negozio cartucce e inchiostri per stampanti.</p>
+      <form id="printerInkForm">
+        <div class="form-row">
+          <label for="printerBrand">Marca stampante</label>
+          <select id="printerBrand" name="printer_brand" required>
+            <option value="">Seleziona</option>
+            <option value="HP">HP</option>
+            <option value="Canon">Canon</option>
+            <option value="Epson">Epson</option>
+            <option value="Brother">Brother</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Xerox">Xerox</option>
+            <option value="Other">Altro</option>
+          </select>
+          <input id="printerBrandOther" class="hidden" name="printer_brand_other" type="text" placeholder="Inserisci marca stampante">
+        </div>
+        <div class="form-row">
+          <label for="printerModel">Modello stampante</label>
+          <input id="printerModel" name="printer_model" type="text" placeholder="Es. HP OfficeJet Pro 9010">
+        </div>
+        <div class="form-actions" style="justify-content:flex-start">
+          <button class="btn btn-quote" type="submit">Chiedi disponibilita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="margin-top:20px">
+  <h2>Contatti</h2>
+
+  <div class="grid">
+    <div class="card">
+      <p>Contattaci su WhatsApp o vieni in negozio.</p>
+
+      <p>📍 <strong>Indirizzo</strong><br>
+      <a class="contact-btn" href="https://maps.google.com/?q=Via%20Francesco%20Grimaldi%20120,%2000146%20Roma" target="_blank" rel="noopener">Via Francesco Grimaldi 120, 00146 Roma</a></p>
+
+      <p>&#128222; <strong>Telefono</strong><br>
+      <span class="phone-row">
+        <a class="contact-btn" href="tel:+393381846260">+39 338 1846260</a>
+        <a class="btn2" href="https://wa.me/393381846260" target="_blank">WhatsApp</a>
+      </span></p>
+
+      <p>✉️ <strong>Email</strong><br>
+      <a class="contact-btn" href="mailto:x.telefonja@gmail.com">x.telefonja@gmail.com</a></p>
+</div>
+
+    <div class="card" style="padding:0;overflow:hidden">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2971.2758359056525!2d12.463404776458624!3d41.86541146620799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13258a994e2ece65%3A0x3f095eb93b670016!2sVia%20Francesco%20Grimaldi%2C%20120%2C%2000146%20Roma%20RM!5e0!3m2!1szh-CN!2sit!4v1767117288216!5m2!1szh-CN!2sit"
+        width="100%" height="300" style="border:0;" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="legal">
+  <h3>* Condizioni di Assistenza e Garanzia</h3>
+  <p>
+    L'assistenza e la garanzia sui pezzi di ricambio sostituiti hanno validita di 3 mesi dalla data
+    di ritiro del dispositivo.<br>
+    La garanzia copre esclusivamente i componenti che presentano difetti di fabbricazione o
+    malfunzionamenti non imputabili all'uso improprio.<br>
+    Sono esclusi dalla garanzia i pezzi che evidenziano danni accidentali, urti, manomissioni o
+    utilizzo scorretto.<br>
+    La garanzia si applica unicamente al difetto dichiarato al momento della riparazione. Eventuali
+    difetti diversi che si manifestino successivamente non saranno di responsabilita del negozio.<br>
+    Si raccomanda vivamente di effettuare un backup completo dei dati prima di consegnare PC o
+    smartphone per la riparazione.<br>
+    Il negozio declina ogni responsabilita per la perdita, danneggiamento o cancellazione dei dati
+    eventualmente presenti nei dispositivi.<br>
+    Gli oggetti riparati devono essere ritirati entro 6 mesi dalla data di avviso di ritiro.
+    Trascorso tale termine, il negozio declina ogni responsabilita in merito alla custodia, ai sensi
+    dell'art. 1780 del Codice Civile.<br>
+    Decorso il termine, il bene si considera abbandonato e il cliente si intende rinunciatario del
+    diritto alla restituzione. In tal caso, i pezzi di ricambio installati potranno essere rimossi e
+    riutilizzati, mentre i componenti originali danneggiati non saranno restituiti.
+  </p>
+</section>
+
+<footer>
+  © <span id="year"></span> Xtelefonja · Roma
+</footer>
+
+</div>
+</main>
+
+<script>
+const labels={
+  sectionTitle:'Preventivo',
+  brand:'Marca',
+  model:'Modello',
+  issue:'Problema',
+  note:'Note',
+  contact:'Contatto'
+};
+const issueLabels={
+  screen:'Schermo',
+  battery:'Batteria',
+  water:'Acqua',
+  software:'Software',
+  other:'Altro'
+};
+const quoteForm=document.getElementById('quoteForm');
+const quoteBrand=document.getElementById('quoteBrand');
+const quoteBrandOther=document.getElementById('quoteBrandOther');
+const printerInkForm=document.getElementById('printerInkForm');
+const printerBrand=document.getElementById('printerBrand');
+const printerBrandOther=document.getElementById('printerBrandOther');
+
+function syncBrandOther(){
+  if(quoteBrand.value==='Other'){
+    quoteBrandOther.classList.remove('hidden');
+    quoteBrandOther.required=true;
+  }else{
+    quoteBrandOther.classList.add('hidden');
+    quoteBrandOther.required=false;
+    quoteBrandOther.value='';
+  }
+}
+
+quoteBrand.addEventListener('change', syncBrandOther);
+syncBrandOther();
+
+function syncPrinterBrandOther(){
+  if(printerBrand.value==='Other'){
+    printerBrandOther.classList.remove('hidden');
+    printerBrandOther.required=true;
+  }else{
+    printerBrandOther.classList.add('hidden');
+    printerBrandOther.required=false;
+    printerBrandOther.value='';
+  }
+}
+
+printerBrand.addEventListener('change', syncPrinterBrandOther);
+syncPrinterBrandOther();
+
+quoteForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const brand=quoteBrand.value==='Other'
+    ? (quoteBrandOther.value || '-')
+    : (quoteBrand.value || '-');
+  const model=document.getElementById('quoteModel').value || '-';
+  const issue=document.getElementById('quoteIssue').value || '-';
+  const issueText=(issueLabels[issue] || issue);
+  const note=document.getElementById('quoteNote').value || '';
+  const contact=document.getElementById('quoteContact').value || '-';
+
+  const now=new Date();
+  const dateKey=now.getFullYear().toString().padStart(4,'0')+
+    (now.getMonth()+1).toString().padStart(2,'0')+
+    now.getDate().toString().padStart(2,'0');
+  const counterKey='quoteCount_'+dateKey;
+  const counter=(parseInt(localStorage.getItem(counterKey) || '0', 10) + 1);
+  localStorage.setItem(counterKey, counter.toString());
+
+  const lines=[
+    labels.sectionTitle+':'+dateKey+' '+counter,
+    labels.brand+': '+brand,
+    labels.model+': '+model,
+    labels.issue+': '+issueText,
+    labels.note+': '+note,
+    labels.contact+': '+contact
+  ];
+  const msg=lines.join('\n');
+  const url='https://wa.me/393381846260?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
+});
+
+printerInkForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const brand=printerBrand.value==='Other'
+    ? (printerBrandOther.value || '-')
+    : (printerBrand.value || '-');
+  const model=document.getElementById('printerModel').value || '-';
+  const lines=[
+    'Richiesta inchiostro stampanti',
+    'Marca stampante: ' + brand,
+    'Modello stampante: ' + model
+  ];
+  const url='https://wa.me/393381846260?text='+encodeURIComponent(lines.join('\n'));
+  window.open(url,'_blank');
+});
+
+function extractLatestProduct(doc, sectionId){
+  const section=doc.querySelector('#'+sectionId);
+  if(!section) return null;
+  const cards=Array.from(section.querySelectorAll('.card'));
+  for(const card of cards){
+    const titleEl=card.querySelector('.product-title');
+    const priceEl=card.querySelector('.product-price');
+    const descEl=card.querySelector('.product-desc');
+    if(!titleEl || !priceEl || !descEl) continue;
+    const title=titleEl.textContent.trim();
+    const priceText=priceEl.textContent.trim();
+    const desc=descEl.textContent.trim();
+    if(/in\s+arrivo/i.test(title)) continue;
+    if(/In\s+aggiornamento/i.test(desc)) continue;
+    if(/--/.test(priceText)) continue;
+    const imgEl=card.querySelector('.product-image');
+    const imgSrc=imgEl ? imgEl.getAttribute('src') : '';
+    const imgAlt=imgEl ? imgEl.getAttribute('alt') : title;
+    return {
+      titleHtml:titleEl.innerHTML,
+      priceText,
+      descHtml:descEl.innerHTML,
+      imgSrc,
+      imgAlt
+    };
+  }
+  return null;
+}
+
+function updateLatestProducts(){
+  fetch('prodotti.html')
+    .then((res)=>res.text())
+    .then((html)=>{
+      const doc=new DOMParser().parseFromString(html,'text/html');
+      const sections=['nuovi','usato','computer','tablet'];
+      sections.forEach((id)=>{
+        const info=extractLatestProduct(doc, id);
+        if(!info) return;
+        const target=document.querySelector('[data-latest-box="'+id+'"]');
+        if(!target) return;
+        target.innerHTML='';
+        const wrap=document.createElement('div');
+        wrap.className='latest-card';
+        if(info.imgSrc){
+          const img=document.createElement('img');
+          img.className='latest-image';
+          img.src=info.imgSrc;
+          img.alt=info.imgAlt || '';
+          wrap.appendChild(img);
+        }else{
+          const ph=document.createElement('div');
+          ph.className='latest-image latest-placeholder';
+          ph.textContent='Immagine';
+          wrap.appendChild(ph);
+        }
+        const title=document.createElement('h4');
+        title.className='product-title';
+        title.innerHTML=info.titleHtml;
+        wrap.appendChild(title);
+        const price=document.createElement('p');
+        price.className='latest-price';
+        const priceMatch=info.priceText.match(/(\d+(?:\.\d+)?)/);
+        if(priceMatch){
+          const value=parseFloat(priceMatch[1]);
+          price.textContent='Prezzo: \u20AC'+value.toFixed(2);
+        }else{
+          price.textContent=info.priceText;
+        }
+        wrap.appendChild(price);
+        const toggle=document.createElement('button');
+        toggle.type='button';
+        toggle.className='desc-toggle';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent='Dettagli +';
+        wrap.appendChild(toggle);
+        const desc=document.createElement('p');
+        desc.className='latest-desc';
+        desc.innerHTML=info.descHtml
+          .replace(/Marca:\s*[^<]*<br>/i, '')
+          .replace(/Modello:\s*[^<]*<br>/i, '');
+        wrap.appendChild(desc);
+        target.appendChild(wrap);
+      });
+    })
+    .catch(()=>{});
+}
+
+updateLatestProducts();
+document.addEventListener('click', (e)=>{
+  const target=e.target;
+  if(!(target instanceof HTMLButtonElement)) return;
+  if(!target.classList.contains('desc-toggle')) return;
+  const card=target.closest('.latest-card');
+  if(!card) return;
+  const desc=card.querySelector('.latest-desc');
+  if(!desc) return;
+  const isOpen=desc.classList.toggle('show');
+  target.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  target.textContent=isOpen ? 'Nascondi -' : 'Dettagli +';
+});
+year.textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Xtelefonja - Prodotti | Roma</title>
+  <meta name="description" content="Catalogo prodotti Xtelefonja: nuovi telefoni, usato garantito e computer usati.">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VPB1HNPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y5VPB1HNPM');
+  </script>
+
+  <style>
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#0ea5a4;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
+
+    .topbar{
+      position:fixed;top:0;left:0;right:0;z-index:9999;
+      background:#ffffff;color:#000000;box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+    .topbar-inner{max-width:1000px;margin:0 auto;padding:0 4px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;justify-content:center;flex:1;min-width:150px;height:110px;overflow:hidden}
+    .logo img{height:220px;width:auto;margin-right:8px;vertical-align:middle;display:block}
+    nav{margin-right:80px}
+    nav a{color:#000000;text-decoration:none;margin-left:14px}
+
+    main{padding-top:90px}
+    .container{max-width:1000px;margin:0 auto;padding:20px}
+
+    header.hero{background:linear-gradient(90deg,var(--accent),#06b6d4);color:#fff;padding:2px 0;display:flex;align-items:center}
+    .hero-wrap{display:flex;gap:24px;flex-wrap:wrap;align-items:center;justify-content:center;width:100%}
+    .hero-left{flex:1;min-width:260px;text-align:center;padding-top:1px;transform:translateY(8px)}
+    .hero h1{margin:1px 0;font-size:28px}
+
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,240px));gap:16px;justify-content:start;align-items:start}
+    .section-block{margin-top:20px;padding:16px;border-radius:16px;background:#f2f5fb;border:1px solid #e2e8f0}
+    .section-block:first-of-type{margin-top:0}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,.06);max-width:240px;width:100%;display:flex;flex-direction:column;position:relative}
+    .sold-out{
+      filter:grayscale(1);
+      opacity:.7;
+    }
+    .sold-out .btn-card{
+      background:#9ca3af;
+      cursor:pointer;
+      pointer-events:auto;
+    }
+    .sold-out .sold-out-badge{
+      position:absolute;
+      top:18px;
+      left:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#e5e7eb;
+      color:#111827;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      transform:rotate(-12deg);
+      z-index:2;
+    }
+    .product-image{width:100%;height:120px;border-radius:10px;object-fit:contain;background:linear-gradient(135deg,#e2e8f0,#f8fafc)}
+    .product-image{cursor:pointer}
+    .img-placeholder{
+      height:120px;border-radius:10px;
+      background:linear-gradient(135deg,#e2e8f0,#f8fafc);
+      display:flex;align-items:center;justify-content:center;
+      color:#94a3b8;font-weight:700;
+    }
+    .product-title{margin:12px 0 6px;font-weight:800;display:flex;flex-direction:column;gap:2px;min-height:48px}
+    .product-title span{display:inline}
+    .product-brand{margin:0;text-transform:uppercase}
+    .product-model{white-space:nowrap}
+    .product-model.compact-model{font-size:.88em;white-space:normal;line-height:1.1}
+    .product-desc{margin:6px 0;color:var(--muted);font-size:14px;display:none}
+    .product-desc.show{display:block}
+    .desc-toggle{
+      margin-top:8px;
+      margin-bottom:10px;
+      background:#f1f5f9;
+      color:#0f172a;
+      border:0;
+      border-radius:10px;
+      padding:4px 8px;
+      font-size:12px;
+      font-weight:700;
+      cursor:pointer;
+      align-self:flex-start;
+    }
+    .product-price{margin:0;font-weight:800}
+    .product-empty{padding:12px;color:var(--muted);font-size:14px}
+    .modal{position:fixed;inset:0;background:rgba(15,23,42,.7);display:none;align-items:center;justify-content:center;z-index:10000;padding:20px}
+    .modal.active{display:flex}
+    .modal-inner{max-width:92vw;max-height:90vh;width:auto;background:#fff;border-radius:14px;padding:14px;box-shadow:0 20px 60px rgba(15,23,42,.35)}
+    .modal-inner img{max-width:90vw;max-height:78vh;width:auto;height:auto;display:block;border-radius:10px;margin:0 auto}
+    .modal-controls{display:flex;justify-content:center;gap:16px;margin-top:10px}
+    .modal-nav{background:#0f172a;color:#fff;border:0;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .modal-close{margin-top:10px;background:#0f172a;color:#fff;border:0;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .btn-card{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;text-decoration:none;margin-top:auto;align-self:flex-start}
+
+    h2{border-bottom:3px solid #cbd5e1;padding-bottom:10px;text-transform:uppercase}
+    .section-block{border:2px solid #c5d1e0;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+    footer{padding:20px 0;color:var(--muted);font-size:14px}
+    .note-area{margin-top:20px;padding:12px 14px;background:#eef2f7;border-radius:10px}
+    .note-area .muted{font-size:12px;line-height:1.5}
+
+    @media (max-width: 720px){
+      .topbar-inner{flex-direction:row;align-items:center;gap:8px;padding:8px 10px}
+      .logo{height:70px;min-width:0;flex:1}
+      .logo img{height:110px;margin-right:0}
+      nav{margin-right:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
+      nav a{margin-left:0;font-size:12px}
+      main{padding-top:140px}
+      .container{padding:16px}
+      .hero-wrap{gap:16px}
+      .hero h1{font-size:22px}
+      .section-block{padding:12px}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      .card{padding:12px}
+      .product-image{height:96px}
+      .product-title{min-height:40px}
+      .product-model{white-space:normal}
+      .product-price{font-size:13px}
+      .btn-card{font-size:13px;padding:8px 10px}
+      .desc-toggle{font-size:11px;padding:3px 6px;margin-bottom:8px}
+    }
+    @media (max-width: 1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner nav">
+    <div class="logo">
+      <a href="index.html" aria-label="Torna alla home">
+        <img src="images/banner.jpg" alt="Xtelefonja" height="220">
+      </a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#nuovi">Nuovi</a>
+      <a href="#usato">Usato</a>
+      <a href="#computer">Computer</a>
+      <a href="index.html#contact">Contatti</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div class="hero-left">
+        <h1>Prodotti disponibili</h1>
+        <p>Selezione aggiornata di telefoni cellulari nuovi, usati e computer garantiti.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <section id="nuovi" class="section-block">
+      <h2>Telefoni nuovi</h2>
+      <div class="grid">
+        <div class="card">
+          <img class="product-image" src="https://www.powerplanetonline.com/cdnassets/honor_x6b_negro_01_l.jpg" alt="Honor X6b">
+          <h3 class="product-title"><span class="product-brand">Honor</span><span class="product-model">X6b</span></h3>
+          <p class="product-price">Prezzo: 119</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.56&quot;<br>Camera: 50MP<br>Batteria: 5200mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://m.media-amazon.com/images/I/71b08QoLjZL._AC_UF1000,1000_QL80_.jpg" alt="Honor 200 Lite">
+          <h3 class="product-title"><span class="product-brand">Honor</span><span class="product-model">200 Lite</span></h3>
+          <p class="product-price">Prezzo: 199</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB<br>Schermo: 6.7&quot;<br>Camera: 108MP<br>Batteria: 4500mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://m.media-amazon.com/images/I/71CTDjrV+lL._AC_UF1000,1000_QL80_.jpg" alt="Honor X7a">
+          <h3 class="product-title"><span class="product-brand">Honor</span><span class="product-model">X7a</span></h3>
+          <p class="product-price">Prezzo: 129</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.75&quot;<br>Camera: 50MP<br>Batteria: 6000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://cdn.idealo.com/folder/Product/203820/6/203820673/s10_produktbild_max/motorola-moto-g24-power-ink-blue.jpg" alt="Motorola moto g24 power">
+          <h3 class="product-title"><span class="product-brand">Motorola</span><span class="product-model">moto g24 power</span></h3>
+          <p class="product-price">Prezzo: 139</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB<br>Schermo: 6.56&quot;<br>Camera: 50MP<br>Batteria: 6000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://m.media-amazon.com/images/I/51UX7sMk+AL.jpg" alt="Motorola moto g24">
+          <h3 class="product-title"><span class="product-brand">Motorola</span><span class="product-model">moto g24</span></h3>
+          <p class="product-price">Prezzo: 119</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.56&quot;<br>Camera: 50MP<br>Batteria: 5000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://i02.appmifile.com/312_item_sg/21/10/2024/a0bdc3d663561012998e633fc41aba3f.png" alt="Xiaomi Redmi 14C">
+          <h3 class="product-title"><span class="product-brand">Xiaomi</span><span class="product-model">Redmi 14C</span></h3>
+          <p class="product-price">Prezzo: 139</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB<br>Schermo: 6.88&quot;<br>Camera: 50MP<br>Batteria: 5160mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://fdn2.gsmarena.com/vv/pics/realme/realme-narzo-n61-02.jpg" alt="realme Note 60">
+          <h3 class="product-title"><span class="product-brand">realme</span><span class="product-model">Note 60</span></h3>
+          <p class="product-price">Prezzo: 99</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.74&quot;<br>Camera: 32MP<br>Batteria: 5000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card coming-soon">
+          <img class="product-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEydCRBQRKKNuDXkoDTyMFUlTngCjA3-9vNsoh8hN5rZdv5tnBrj3aFdRQrbTbR3o9LaM&usqp=CAU" alt="In arrivo">
+          <h3 class="product-title"><span class="product-brand">Prodotto</span><span class="product-model">in arrivo</span></h3>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">In aggiornamento.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="oukitel" class="section-block">
+      <h2><img src="https://www.oukitel.it/img/logo-1748010131.jpg" alt="OUKITEL" style="height:28px;vertical-align:middle"></h2>
+      <div class="grid">
+        <div class="card">
+          <img class="product-image" src="https://oukitel.store/cdn/shop/files/20250619115346_cb373393-3aed-4f6d-9e2a-152445f6d719.jpg?v=1755076698&width=713" alt="OUKITEL C61 Pro">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">C61 Pro</span></h3>
+          <p class="product-price">Prezzo: 139</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB+16GB<br>Schermo: 6.88&quot; HD+<br>Camera: 13MP<br>Batteria: 5150mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://www.phonesrugged.it/wp-content/uploads/2023/11/OUKITEL-WP32-VERDE.webp" alt="OUKITEL WP32">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">WP32</span></h3>
+          <p class="product-price">Prezzo: 139</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB+12GB<br>Schermo: 5.93&quot;<br>Camera: 20MP<br>Batteria: 6300mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://oukitel.store/cdn/shop/files/oukitel-g3-rugged-phone.webp?v=1766658904&width=713" alt="OUKITEL G3">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">G3</span></h3>
+          <p class="product-price">Prezzo: 149</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 4GB+12GB<br>Schermo: 6&quot; HD+<br>Camera: 13MP<br>Batteria: 6300mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://www.oukitel.it/552-medium_default/oukitel-wp53-pro-4g-rugged-phone-con-display-fhd-da-652batteria-da-11000mah-fotocamera-da-50mp-android-15-8gb512gb-nfc.jpg" alt="OUKITEL WP53 S">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">WP53 S</span></h3>
+          <p class="product-price">Prezzo: 159</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB+12GB<br>Schermo: 6.52&quot; FHD+<br>Camera: 50MP<br>Rete: 4G<br>Batteria: 11000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://m.media-amazon.com/images/I/81xdxgc4PSL._AC_SX679_.jpg" alt="OUKITEL WP23 Plus">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">WP23 Plus</span></h3>
+          <p class="product-price">Prezzo: 179</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB+16GB<br>Schermo: 6.52&quot; 60Hz<br>Camera: 13MP<br>Rete: 4G<br>Batteria: 10600mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://www.oukitel.it/574-medium_default/oukitel-wp60-rugged-5g-batteria-10000mah-108mp-visione-notturna-120hz-ip68ip69k-mil-std-810h.jpg" alt="Oukitel WP60">
+          <h3 class="product-title"><span class="product-brand">Oukitel</span><span class="product-model">WP60</span></h3>
+          <p class="product-price">Prezzo: 299</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB+16GB<br>Schermo: 7.2&quot; HD 120Hz<br>Camera: 108MP<br>Rete: 5G<br>Batteria: 10000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card coming-soon">
+          <img class="product-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEydCRBQRKKNuDXkoDTyMFUlTngCjA3-9vNsoh8hN5rZdv5tnBrj3aFdRQrbTbR3o9LaM&usqp=CAU" alt="In arrivo">
+          <h3 class="product-title"><span class="product-brand">OUKITEL</span><span class="product-model">in arrivo</span></h3>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">OUKITEL: modelli in arrivo. Chiedi info.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="usato" class="section-block">
+      <h2>Telefoni usati</h2>
+      <div class="grid">
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://m.media-amazon.com/images/I/61t8LdI8gUL._AC_UF1000,1000_QL80_.jpg" alt="Apple iPhone 11">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPhone 11</span></h3>
+          <p class="product-price">Prezzo: 149</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.1&quot;<br>Camera: 12MP</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://m.media-amazon.com/images/I/61HHS0HrjpL._AC_UF1000,1000_QL80_.jpg" alt="Apple iPhone 14 Pro">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPhone 14 Pro</span></h3>
+          <p class="product-price">Prezzo: 449</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 6GB<br>Schermo: 6.1&quot;<br>Camera: 48MP<br>Stato batteria: 82%</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://m.media-amazon.com/images/I/8107HPv4kvL._AC_UF1000,1000_QL80_.jpg" alt="Apple iPhone 11 Pro Max">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPhone 11 Pro Max</span></h3>
+          <p class="product-price">Prezzo: 249</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 4GB<br>Schermo: 6.5&quot;<br>Camera: 12MP</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_147103540/fee_786_587_png" alt="Apple iPhone 13 Pro Max">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPhone 13 Pro Max</span></h3>
+          <p class="product-price">Prezzo: 399</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 6GB<br>Schermo: 6.7&quot;<br>Camera: 12MP<br>Batteria: 4352mAh<br>Stato batteria: 100%</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://cdn.idealo.com/folder/Product/203708/1/203708162/s10_produktbild_max/samsung-galaxy-s24-ultra.jpg" alt="Samsung S24 Ultra">
+          <h3 class="product-title"><span class="product-brand">Samsung</span><span class="product-model">Galaxy S24 Ultra</span></h3>
+          <p class="product-price">Prezzo: 599</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 12GB<br>Schermo: 6.8&quot;<br>Camera: 200MP<br>Batteria: 5000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://macrogamesitalia.it/cdn/shop/files/Progettosenzatitolo_4_4801962d-b5ec-40be-a7de-10da9bae5d52.png?v=1688544106&width=1445" alt="Samsung S23 Ultra">
+          <h3 class="product-title"><span class="product-brand">Samsung</span><span class="product-model">Galaxy S23 Ultra</span></h3>
+          <p class="product-price">Prezzo: 499</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 256GB<br>RAM: 8GB<br>Schermo: 6.8&quot;<br>Camera: 200MP<br>Batteria: 5000mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-z-flip5-5g-r1.jpg" alt="Samsung Z Flip 5">
+          <h3 class="product-title"><span class="product-brand">Samsung</span><span class="product-model">Galaxy Z Flip 5</span></h3>
+          <p class="product-price">Prezzo: 399</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 512GB<br>RAM: 8GB<br>Schermo: 6.7&quot;<br>Batteria: 3700mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card coming-soon">
+          <img class="product-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEydCRBQRKKNuDXkoDTyMFUlTngCjA3-9vNsoh8hN5rZdv5tnBrj3aFdRQrbTbR3o9LaM&usqp=CAU" alt="In arrivo">
+          <h3 class="product-title"><span class="product-brand">Prodotto</span><span class="product-model">in arrivo</span></h3>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">In aggiornamento.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+      </div>
+    </section>
+    <section id="tablet" class="section-block">
+      <h2>Tablet usati</h2>
+      <div class="grid">
+        <div class="card">
+          <img class="product-image" src="https://www.varle.lt/static/uploads/products/1516/len/lenovo-idea-tab-pro-127-256-gt-wifi-tabletti-ac12f7fa4b.jpeg" alt="Lenovo Idea Tab Pro">
+          <h3 class="product-title"><span class="product-brand">Lenovo</span><span class="product-model">Idea Tab Pro</span></h3>
+          <p class="product-price">Prezzo: 249</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Rete: WiFi<br>Memoria: 256GB<br>RAM: 8GB<br>Schermo: 12.7&quot;<br>Camera: 13MP<br>Batteria: 10200mAh<br>Note: con scatola, quasi nuovo.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://m.media-amazon.com/images/I/61S8EdkN9TL.jpg" alt="Apple iPad Air 2">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPad Air 2</span></h3>
+          <p class="product-price">Prezzo: 110</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Rete: WiFi + 4G<br>Memoria: 128GB<br>RAM: 2GB<br>Schermo: 9.7&quot;<br>Camera: 8MP<br>Batteria: 7340mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://images-eu.ssl-images-amazon.com/images/I/71GS7mS7pRL._AC_UL600_SR600,600_.jpg" alt="Apple iPad Air 4 (2020)">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPad Air 4 (2020)</span></h3>
+          <p class="product-price">Prezzo: 199</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 64GB<br>RAM: 4GB<br>Schermo: 10.9&quot;<br>Camera: 12MP<br>Batteria: 7606mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://www.backmarket.it/cdn-cgi/image/format%3Dauto%2Cquality%3D75%2Cwidth%3D1080/https://d2e6ccujb3mkqf.cloudfront.net/3d32a440-7580-4cdf-af1a-ced82fe1b02a-2_55b5a36f-bffc-4cb8-b0e3-d3fc6ea07a2f.jpg" alt="Samsung Galaxy Tab S7+">
+          <h3 class="product-title"><span class="product-brand">Samsung</span><span class="product-model">Galaxy Tab S7+</span></h3>
+          <p class="product-price">Prezzo: 199</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Memoria: 128GB<br>RAM: 6GB<br>Schermo: 12.4&quot;<br>Camera: 13MP<br>Batteria: 10090mAh<br>Note: alone giallo in un angolo, non influisce sull'uso.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-mini-2024-2.jpg" alt="Apple iPad mini A17 Pro">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPad mini A17 Pro</span></h3>
+          <p class="product-price">Prezzo: 499</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Modello: A2995<br>Rete: WiFi + eSIM<br>Memoria: 128GB<br>RAM: 8GB<br>Schermo: 8.3&quot;<br>Batteria: 5078mAh</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card coming-soon">
+          <img class="product-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEydCRBQRKKNuDXkoDTyMFUlTngCjA3-9vNsoh8hN5rZdv5tnBrj3aFdRQrbTbR3o9LaM&usqp=CAU" alt="In arrivo">
+          <h3 class="product-title"><span class="product-brand">Prodotto</span><span class="product-model">in arrivo</span></h3>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">In aggiornamento.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="computer" class="section-block">
+      <h2>Computer usati</h2>
+      <div class="grid">
+        <div class="card">
+          <img class="product-image" src="https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111932_sp809mbp16touch-space-2019.jpeg" alt="Apple MacBook Pro 16 2019">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model compact-model">MacBook Pro 16&quot; 2019</span></h3>
+          <p class="product-price">Prezzo: 499</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Modello: A2141<br>CPU: Intel Core i7<br>GPU: Intel UHD 630<br>RAM: 16GB<br>Memoria: 512GB SSD<br>Schermo: 16&quot;<br>Sistema operativo: macOS Ventura</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://ifdalivestorage.blob.core.windows.net/user-uploads/7909/344128/00000000-0000-0000-0000-000000000000/01_main_entry_img.jpg" alt="DELL Alienware X14">
+          <h3 class="product-title"><span class="product-brand">DELL</span><span class="product-model">Alienware X14</span></h3>
+          <p class="product-price">Prezzo: 599</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i7 12th gen<br>GPU: NVIDIA RTX 3060<br>RAM: 32GB<br>Memoria: 1TB SSD<br>Schermo: 14&quot;<br>Rete: Wi-Fi / Bluetooth<br>Sistema operativo: Windows 11 Pro<br>Condizione: usato grado B<br>Tastiera: UK</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://files.refurbed.com/pi/hp-zbook-fury-16-g10-13850hx-16-1699959384.jpg?t=fitdesign&h=600&w=800" alt="HP ZBook Fury 16 G10">
+          <h3 class="product-title"><span class="product-brand">HP</span><span class="product-model">ZBook Fury 16 G10</span></h3>
+          <p class="product-price">Prezzo: 1499</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i7<br>GPU: NVIDIA RTX 5000 Ada<br>RAM: 32GB<br>Memoria: 1TB SSD<br>Schermo: 16&quot; Touch<br>Note: impronta digitale non funziona.<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="#" aria-disabled="true">Avvisami</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://i.ebayimg.com/images/g/NuUAAeSwJrxodopq/s-l1600.webp" alt="Lenovo Yoga Book 9">
+          <h3 class="product-title"><span class="product-brand">Lenovo</span><span class="product-model">Yoga Book 9</span></h3>
+          <p class="product-price">Prezzo: 999</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel Core i7 Evo 13th gen<br>GPU: Intel Iris Xe Graphics<br>RAM: 16GB<br>Memoria: 512GB SSD<br>Schermo: 13.3&quot; doppio OLED Touch<br>Note: con tastiera Bluetooth<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_142051383/fee_786_587_png" alt="HP ProBook 440 G8">
+          <h3 class="product-title"><span class="product-brand">HP</span><span class="product-model">ProBook 440 G8</span></h3>
+          <p class="product-price">Prezzo: 299</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i5<br>GPU: Intel Iris Xe Graphics<br>RAM: 8GB<br>Memoria: 256GB SSD<br>Schermo: 14&quot; FHD<br>Rete: Wi-Fi 6<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card" data-gallery="https://i.ebayimg.com/images/g/iPcAAeSwvAdoyFOa/s-l1600.webp|https://i.ebayimg.com/images/g/ga4AAeSwQ8poyFOi/s-l1600.webp">
+          <img class="product-image" src="https://i.ebayimg.com/images/g/iPcAAeSwvAdoyFOa/s-l1600.webp" alt="Apple Mac Mini 2011 A1347">
+          <h3 class="product-title"><span class="product-brand">Apple</span><span class="product-model">Mac Mini 2011</span></h3>
+          <p class="product-price">Prezzo: 149</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">Modello: A1347<br>CPU: Intel Core i5<br>RAM: 4GB DDR3<br>Memoria: 120GB SSD<br>Sistema operativo: macOS High Sierra 10.13.6</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://asset.msi.com/resize/image/global/product/product_3_20180523133256_5b04fd08de29b.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png" alt="MSI Thin GF63">
+          <h3 class="product-title"><span class="product-brand">MSI</span><span class="product-model">Thin GF63</span></h3>
+          <p class="product-price">Prezzo: 599</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i7 12th gen<br>GPU: RTX 3050<br>RAM: 16GB<br>Memoria: 512GB SSD<br>Schermo: 15.6&quot; FHD<br>Rete: Wi-Fi 6<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card">
+          <img class="product-image" src="https://immagini.trovaprezzi.it/prodotti/hp_probook_445_g10.jpg" alt="HP EliteBook 840 G9">
+          <h3 class="product-title"><span class="product-brand">HP</span><span class="product-model">EliteBook 840 G9</span></h3>
+          <p class="product-price">Prezzo: 499</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i5<br>GPU: Intel Iris Xe Graphics<br>RAM: 32GB<br>Memoria: 512GB SSD<br>Schermo: 14&quot;<br>Tastiera: USA<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+        <div class="card sold-out">
+          <div class="sold-out-badge">Esaurito</div>
+          <img class="product-image" src="https://img01.huaweifile.com/eu/it/huawei/uomcdn/ITHW/pms/202405/gbom/6942103122316/800_800_3208212B5CEA17AFD587E6674ED3695Bmp.png" alt="HUAWEI MateBook 14">
+          <h3 class="product-title"><span class="product-brand">HUAWEI</span><span class="product-model">MateBook 14</span></h3>
+          <p class="product-price">Prezzo: 349</p>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">CPU: Intel i7<br>GPU: NVIDIA MX350<br>RAM: 16GB<br>Memoria: 512GB SSD<br>Schermo: 14&quot; 2K Touch<br>Tastiera: USA<br>Sistema operativo: Windows 11 Pro</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Avvisami</a>
+        </div>
+        <div class="card coming-soon">
+          <img class="product-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEydCRBQRKKNuDXkoDTyMFUlTngCjA3-9vNsoh8hN5rZdv5tnBrj3aFdRQrbTbR3o9LaM&usqp=CAU" alt="In arrivo">
+          <h3 class="product-title"><span class="product-brand">Prodotto</span><span class="product-model">in arrivo</span></h3>
+          <button class="desc-toggle" type="button" aria-expanded="false">Dettagli +</button>
+          <p class="product-desc">In aggiornamento.</p>
+          <a class="btn-card" href="https://wa.me/393381846260" target="_blank">Richiedi info</a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="note-area">
+      <p class="muted">
+        * Garanzia: per i telefoni nuovi la garanzia e l'assistenza sono gestite dal marchio. Il cliente
+        deve contattare direttamente il produttore. Per i dispositivi usati la garanzia e' a carico
+        del nostro negozio ed e' valida 3 mesi dalla data di acquisto.
+      </p>
+    </section>
+
+    <footer>
+      (c) <span id="year"></span> Xtelefonja - Roma
+    </footer>
+  </div>
+</main>
+
+<div class="modal" id="imgModal">
+  <div class="modal-inner">
+    <img id="modalImg" alt="">
+    <div class="modal-controls">
+      <button class="modal-nav" type="button" id="modalPrev">Prev</button>
+      <button class="modal-close" type="button" id="modalClose">Chiudi</button>
+      <button class="modal-nav" type="button" id="modalNext">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const modal=document.getElementById('imgModal');
+const modalImg=document.getElementById('modalImg');
+const modalClose=document.getElementById('modalClose');
+const modalPrev=document.getElementById('modalPrev');
+const modalNext=document.getElementById('modalNext');
+let modalImages=[];
+let modalIndex=0;
+
+function setModalImage(index){
+  if(!modalImages.length) return;
+  modalIndex=(index + modalImages.length) % modalImages.length;
+  modalImg.src=modalImages[modalIndex];
+  modalPrev.style.display=modalImages.length > 1 ? 'inline-block' : 'none';
+  modalNext.style.display=modalImages.length > 1 ? 'inline-block' : 'none';
+}
+
+document.addEventListener('click', (e)=>{
+  const target=e.target;
+  if(target instanceof HTMLImageElement && target.classList.contains('product-image')){
+    const card=target.closest('.card');
+    const gallery=card?.getAttribute('data-gallery');
+    modalImages=gallery ? gallery.split('|').map((item)=>item.trim()).filter(Boolean) : [target.src];
+    const startIndex=modalImages.indexOf(target.src);
+    setModalImage(startIndex === -1 ? 0 : startIndex);
+    modalImg.alt=target.alt || 'Immagine';
+    modal.classList.add('active');
+  }
+});
+modalPrev.addEventListener('click', ()=>setModalImage(modalIndex - 1));
+modalNext.addEventListener('click', ()=>setModalImage(modalIndex + 1));
+modalClose.addEventListener('click', ()=>modal.classList.remove('active'));
+modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('active'); });
+document.querySelectorAll('.product-price').forEach((el)=>{
+  const text=el.textContent || '';
+  const match=text.match(/(\d+(?:\.\d+)?)/);
+  if(!match) return;
+  const value=parseFloat(match[1]);
+  if(Number.isNaN(value)) return;
+  el.textContent='Prezzo: \u20AC' + value.toFixed(2);
+});
+document.querySelectorAll('.desc-toggle').forEach((btn)=>{
+  btn.addEventListener('click', ()=>{
+    const card=btn.closest('.card');
+    if(!card) return;
+    const desc=card.querySelector('.product-desc');
+    if(!desc) return;
+    const isOpen=desc.classList.toggle('show');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent=isOpen ? 'Nascondi -' : 'Dettagli +';
+  });
+});
+year.textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
