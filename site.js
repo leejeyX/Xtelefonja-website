@@ -146,7 +146,9 @@
       const link = card.querySelector('a.btn-card[href^="https://wa.me/393381846260"]');
       const title = card.querySelector('.product-title');
       if (!link || !title) return;
-      const productName = title.textContent.replace(/\s+/g, ' ').trim();
+      const brand = title.querySelector('.product-brand')?.textContent.trim();
+      const model = title.querySelector('.product-model')?.textContent.trim();
+      const productName = [brand, model].filter(Boolean).join(' ') || title.textContent.replace(/\s+/g, ' ').trim();
       const price = card.querySelector('.product-price');
       const isSoldOut = card.classList.contains('sold-out');
       const message = isSoldOut
