@@ -1,27 +1,62 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Xtelefonja — Riparazione & Vendita Cellulari | Roma</title>
-  <meta name="description" content="Xtelefonja a Roma: riparazione e vendita cellulari. Riparazioni rapide, ritiro usato, cambio accessori.">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5VPB1HNPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-Y5VPB1HNPM');
+  <title>Riparazione Cellulari Roma Marconi | Xtelefonja</title>
+  <meta name="description" content="Riparazione cellulari, computer e console a Roma Marconi. Vendita telefoni nuovi e usati, ritiro usato e preventivi rapidi su WhatsApp.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://xtelefonja.com/">
+  <link rel="icon" href="images/banner.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="Xtelefonja">
+  <meta property="og:title" content="Riparazione Cellulari Roma Marconi | Xtelefonja">
+  <meta property="og:description" content="Riparazioni, vendita telefoni nuovi e usati e preventivi rapidi a Roma Marconi.">
+  <meta property="og:url" content="https://xtelefonja.com/">
+  <meta property="og:image" content="https://xtelefonja.com/images/banner1.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "MobilePhoneStore"],
+    "name": "Xtelefonja",
+    "legalName": "XU LIJIE",
+    "vatID": "IT14971681003",
+    "url": "https://xtelefonja.com/",
+    "image": "https://xtelefonja.com/images/banner1.jpg",
+    "telephone": "+39 338 1846260",
+    "email": "x.telefonja@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Francesco Grimaldi 120",
+      "postalCode": "00146",
+      "addressLocality": "Roma",
+      "addressRegion": "RM",
+      "addressCountry": "IT"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:30",
+      "closes": "13:00"
+    }, {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "14:30",
+      "closes": "20:00"
+    }],
+    "areaServed": "Roma"
+  }
   </script>
+  <script src="site.js" defer></script>
 
   <style>
-    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#0ea5a4;--muted:#6b7280}
+    :root{--bg:#f7f7fb;--card:#ffffff;--accent:#0f766e;--muted:#475569}
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#0f172a}
 
     .topbar{
-      position:fixed;top:0;left:0;right:0;z-index:9999;
+      position:sticky;top:0;z-index:9999;
       background:#ffffff;
       color:#000000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -38,7 +73,7 @@
     nav{margin-right:80px}
     nav a{color:#000000;text-decoration:none;margin-left:14px}
 
-    main{padding-top:90px}
+    main{padding-top:0}
     .container{max-width:1000px;margin:0 auto;padding:20px}
 
     header.hero{background:linear-gradient(90deg,var(--accent),#06b6d4);color:#fff;padding:26px 0 10px;display:flex;align-items:center;min-height:240px}
@@ -161,7 +196,7 @@
       .logo img{height:110px;margin-right:0}
       nav{margin-right:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end}
       nav a{margin-left:0;font-size:12px}
-      main{padding-top:140px}
+      main{padding-top:0}
       .container{padding:16px}
       .hero-wrap{gap:16px}
       .hero h1{font-size:22px}
@@ -196,7 +231,7 @@
     <div class="hero-left">
       <h1>Riparazione e vendita di cellulari e computer a Roma</h1>
       <p>Schermi, batterie, danni da acqua e schede madri. Vendita di cellulari, computer e inchiostro per stampanti. Ricambi professionali e prezzi chiari.</p>
-      <a class="btn" href="tel:+393381846260">Contattaci</a>
+      <a class="btn" href="tel:+393381846260">Chiama ora</a>
       <a class="btn2" href="https://wa.me/393381846260" target="_blank">WhatsApp</a>
       <a class="btn3" href="#printer-ink">Inchiostro</a>
     </div>
@@ -225,8 +260,13 @@
       <h3>Telefoni nuovi</h3>
       <div class="latest-label">Ultimo arrivato</div>
       <div class="latest-preview" data-latest-box="nuovi">
-        <div class="latest-placeholder latest-image">Immagine</div>
-        <p class="muted">In aggiornamento.</p>
+        <div class="latest-card">
+          <img class="latest-image" src="https://www.powerplanetonline.com/cdnassets/honor_x6b_negro_01_l.jpg" alt="Honor X6b" loading="lazy" decoding="async">
+          <h4 class="product-title"><span class="product-brand">Honor</span><span class="product-model">X6b</span></h4>
+          <p class="latest-price">Prezzo: €119.00</p>
+          <button type="button" class="desc-toggle" aria-expanded="false">Dettagli +</button>
+          <p class="latest-desc">Memoria: 128GB<br>RAM: 4GB<br>Schermo: 6.56&quot;<br>Camera: 50MP<br>Batteria: 5200mAh</p>
+        </div>
       </div>
       <a class="btn-card" href="prodotti.html#nuovi">Altri</a>
     </div>
@@ -234,8 +274,13 @@
       <h3>Telefoni usati</h3>
       <div class="latest-label">Ultimo arrivato</div>
       <div class="latest-preview" data-latest-box="usato">
-        <div class="latest-placeholder latest-image">Immagine</div>
-        <p class="muted">In aggiornamento.</p>
+        <div class="latest-card">
+          <img class="latest-image" src="https://m.media-amazon.com/images/I/8107HPv4kvL._AC_UF1000,1000_QL80_.jpg" alt="Apple iPhone 11 Pro Max" loading="lazy" decoding="async">
+          <h4 class="product-title"><span class="product-brand">Apple</span><span class="product-model">iPhone 11 Pro Max</span></h4>
+          <p class="latest-price">Prezzo: €249.00</p>
+          <button type="button" class="desc-toggle" aria-expanded="false">Dettagli +</button>
+          <p class="latest-desc">Memoria: 256GB<br>RAM: 4GB<br>Schermo: 6.5&quot;<br>Camera: 12MP</p>
+        </div>
       </div>
       <a class="btn-card" href="prodotti.html#usato">Altri</a>
     </div>
@@ -243,8 +288,13 @@
       <h3>Computer usati</h3>
       <div class="latest-label">Ultimo arrivato</div>
       <div class="latest-preview" data-latest-box="computer">
-        <div class="latest-placeholder latest-image">Immagine</div>
-        <p class="muted">In aggiornamento.</p>
+        <div class="latest-card">
+          <img class="latest-image" src="https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111932_sp809mbp16touch-space-2019.jpeg" alt="Apple MacBook Pro 16 2019" loading="lazy" decoding="async">
+          <h4 class="product-title"><span class="product-brand">Apple</span><span class="product-model">MacBook Pro 16&quot; 2019</span></h4>
+          <p class="latest-price">Prezzo: €499.00</p>
+          <button type="button" class="desc-toggle" aria-expanded="false">Dettagli +</button>
+          <p class="latest-desc">CPU: Intel Core i7<br>RAM: 16GB<br>Memoria: 512GB SSD<br>Schermo: 16&quot;</p>
+        </div>
       </div>
       <a class="btn-card" href="prodotti.html#computer">Altri</a>
     </div>
@@ -252,8 +302,13 @@
       <h3>Tablet usati</h3>
       <div class="latest-label">Ultimo arrivato</div>
       <div class="latest-preview" data-latest-box="tablet">
-        <div class="latest-placeholder latest-image">Immagine</div>
-        <p class="muted">In aggiornamento.</p>
+        <div class="latest-card">
+          <img class="latest-image" src="https://www.varle.lt/static/uploads/products/1516/len/lenovo-idea-tab-pro-127-256-gt-wifi-tabletti-ac12f7fa4b.jpeg" alt="Lenovo Idea Tab Pro" loading="lazy" decoding="async">
+          <h4 class="product-title"><span class="product-brand">Lenovo</span><span class="product-model">Idea Tab Pro</span></h4>
+          <p class="latest-price">Prezzo: €249.00</p>
+          <button type="button" class="desc-toggle" aria-expanded="false">Dettagli +</button>
+          <p class="latest-desc">Memoria: 256GB<br>RAM: 8GB<br>Schermo: 12.7&quot;<br>Batteria: 10200mAh</p>
+        </div>
       </div>
       <a class="btn-card" href="prodotti.html#tablet">Altri</a>
     </div>
@@ -376,7 +431,7 @@
 
       <p>&#128222; <strong>Telefono</strong><br>
       <span class="phone-row">
-        <a class="contact-btn" href="tel:+393381846260">+39 338 1846260</a>
+        <a class="contact-btn" href="tel:+393381846260">+39&nbsp;338&nbsp;1846260</a>
         <a class="btn2" href="https://wa.me/393381846260" target="_blank">WhatsApp</a>
       </span></p>
 
@@ -386,39 +441,32 @@
 
     <div class="card" style="padding:0;overflow:hidden">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2971.2758359056525!2d12.463404776458624!3d41.86541146620799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13258a994e2ece65%3A0x3f095eb93b670016!2sVia%20Francesco%20Grimaldi%2C%20120%2C%2000146%20Roma%20RM!5e0!3m2!1szh-CN!2sit!4v1767117288216!5m2!1szh-CN!2sit"
-        width="100%" height="300" style="border:0;" loading="lazy">
+        src="about:blank"
+        data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2971.2758359056525!2d12.463404776458624!3d41.86541146620799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13258a994e2ece65%3A0x3f095eb93b670016!2sVia%20Francesco%20Grimaldi%2C%20120%2C%2000146%20Roma%20RM!5e0!3m2!1sit!2sit!4v1767117288216!5m2!1sit!2sit"
+        title="Mappa di Xtelefonja, Via Francesco Grimaldi 120, Roma"
+        width="600" height="300" style="border:0;width:100%;" loading="lazy">
       </iframe>
     </div>
   </div>
 </section>
 
 <section class="legal">
-  <h3>* Condizioni di Assistenza e Garanzia</h3>
+  <h3>* Informazioni sul servizio di assistenza</h3>
   <p>
-    L'assistenza e la garanzia sui pezzi di ricambio sostituiti hanno validita di 3 mesi dalla data
-    di ritiro del dispositivo.<br>
-    La garanzia copre esclusivamente i componenti che presentano difetti di fabbricazione o
-    malfunzionamenti non imputabili all'uso improprio.<br>
-    Sono esclusi dalla garanzia i pezzi che evidenziano danni accidentali, urti, manomissioni o
-    utilizzo scorretto.<br>
-    La garanzia si applica unicamente al difetto dichiarato al momento della riparazione. Eventuali
-    difetti diversi che si manifestino successivamente non saranno di responsabilita del negozio.<br>
-    Si raccomanda vivamente di effettuare un backup completo dei dati prima di consegnare PC o
-    smartphone per la riparazione.<br>
-    Il negozio declina ogni responsabilita per la perdita, danneggiamento o cancellazione dei dati
-    eventualmente presenti nei dispositivi.<br>
-    Gli oggetti riparati devono essere ritirati entro 6 mesi dalla data di avviso di ritiro.
-    Trascorso tale termine, il negozio declina ogni responsabilita in merito alla custodia, ai sensi
-    dell'art. 1780 del Codice Civile.<br>
-    Decorso il termine, il bene si considera abbandonato e il cliente si intende rinunciatario del
-    diritto alla restituzione. In tal caso, i pezzi di ricambio installati potranno essere rimossi e
-    riutilizzati, mentre i componenti originali danneggiati non saranno restituiti.
+    Prima della consegna si raccomanda di effettuare un backup completo. Salvo responsabilita
+    previste dalla legge, il servizio non comprende il salvataggio dei dati presenti nel dispositivo.<br>
+    Il cliente viene avvisato quando il dispositivo e' pronto. In caso di mancato ritiro, il negozio
+    inviera' almeno due solleciti ai recapiti forniti; l'eventuale custodia prolungata o gestione del
+    bene avverra' nel rispetto della normativa applicabile e delle condizioni comunicate al cliente.
   </p>
 </section>
 
 <footer>
-  © <span id="year"></span> Xtelefonja · Roma
+  © <span id="year"></span> Xtelefonja · XU LIJIE · P. IVA 14971681003 · Roma
+  <div class="footer-links">
+    <a href="privacy-cookie.html">Privacy e Cookie Policy</a>
+    <button class="cookie-settings" type="button" data-cookie-settings>Gestisci cookie</button>
+  </div>
 </footer>
 
 </div>
@@ -527,6 +575,7 @@ function extractLatestProduct(doc, sectionId){
   if(!section) return null;
   const cards=Array.from(section.querySelectorAll('.card'));
   for(const card of cards){
+    if(card.classList.contains('sold-out')) continue;
     const titleEl=card.querySelector('.product-title');
     const priceEl=card.querySelector('.product-price');
     const descEl=card.querySelector('.product-desc');
