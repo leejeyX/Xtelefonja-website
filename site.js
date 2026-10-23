@@ -87,7 +87,7 @@
       '<button class="cookie-close" type="button" aria-label="Continua senza cookie statistici">&times;</button>' +
       '<div class="cookie-copy"><strong>Cookie e privacy</strong>' +
       '<p>Usiamo cookie tecnici necessari e, solo con il tuo consenso, Google Analytics per statistiche anonime sul sito. Puoi rifiutare senza limitazioni.</p>' +
-      '<a href="privacy-cookie.html">Privacy e Cookie Policy</a></div>' +
+      '<a href="/privacy-cookie.html">Privacy e Cookie Policy</a></div>' +
       '<div class="cookie-actions"><button class="cookie-button" type="button" data-cookie-choice="rejected">Rifiuta</button>' +
       '<button class="cookie-button cookie-accept" type="button" data-cookie-choice="accepted">Accetta statistiche</button></div>';
     document.body.appendChild(banner);

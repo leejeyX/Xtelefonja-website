@@ -139,6 +139,12 @@
       color:inherit;
       text-decoration:none;
     }
+    .guide-preview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .guide-preview-card{min-height:210px;border:1px solid #dbe3ee}
+    .guide-tag{align-self:flex-start;padding:4px 8px;border-radius:999px;background:#e9f7f5;color:#115e59;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+    .guide-preview-card h3{margin:14px 0 7px;line-height:1.25}
+    .guide-preview-card p{margin:0 0 16px;color:var(--muted);font-size:14px}
+    .guide-more{margin-top:14px;display:inline-block;color:var(--accent);font-weight:800;text-decoration:none}
     .contact-card a{color:inherit;text-decoration:none}
     .contact-row{display:flex;align-items:center;gap:8px}
     .phone-row{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -203,6 +209,7 @@
       .btn,.btn2{display:inline-block;margin:8px 10px 0 0}
       .hero .card{max-width:100%;margin-top:8px}
       .grid{grid-template-columns:1fr}
+      .guide-preview-grid{grid-template-columns:1fr}
       .form-actions{justify-content:stretch}
       .btn-quote{width:100%;text-align:center}
     }
@@ -219,6 +226,7 @@
     <nav>
       <a href="#services">Servizi</a>
       <a href="prodotti.html">Prodotti</a>
+      <a href="guide.html">Guide</a>
       <a href="#quote">Preventivo</a>
       <a href="#contact">Contatti</a>
     </nav>
@@ -335,6 +343,32 @@
     <div class="card"><h3>Riparazione console da gioco</h3></div>
     <div class="card"><h3>Ritiro usato</h3></div>
   </div>
+</section>
+
+<section id="guide" style="margin-top:20px">
+  <h2>Guide e soluzioni</h2>
+  <p class="muted">Controlli semplici e sicuri per i problemi più comuni di smartphone e tablet.</p>
+  <div class="guide-preview-grid">
+    <article class="card guide-preview-card">
+      <span class="guide-tag">Accensione</span>
+      <h3>Il telefono non si accende</h3>
+      <p>Come capire se il problema riguarda ricarica, schermo, software o hardware.</p>
+      <a class="btn-card" href="guide/telefono-non-si-accende.html">Leggi la guida</a>
+    </article>
+    <article class="card guide-preview-card">
+      <span class="guide-tag">Batteria</span>
+      <h3>La batteria si scarica velocemente</h3>
+      <p>Controlla app, segnale e stato della batteria prima di decidere se sostituirla.</p>
+      <a class="btn-card" href="guide/batteria-si-scarica-velocemente.html">Leggi la guida</a>
+    </article>
+    <article class="card guide-preview-card">
+      <span class="guide-tag">Danno da liquido</span>
+      <h3>Telefono caduto in acqua</h3>
+      <p>Cosa fare subito, cosa evitare e quando portare il dispositivo in assistenza.</p>
+      <a class="btn-card" href="guide/telefono-caduto-in-acqua.html">Leggi la guida</a>
+    </article>
+  </div>
+  <a class="guide-more" href="guide.html">Vedi tutte le guide →</a>
 </section>
 
 <section id="quote" style="margin-top:20px">
@@ -464,6 +498,7 @@
 <footer>
   © <span id="year"></span> Xtelefonja · XU LIJIE · P. IVA 14971681003 · Roma
   <div class="footer-links">
+    <a href="guide.html">Guide e soluzioni</a>
     <a href="privacy-cookie.html">Privacy e Cookie Policy</a>
     <button class="cookie-settings" type="button" data-cookie-settings>Gestisci cookie</button>
   </div>
